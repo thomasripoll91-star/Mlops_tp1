@@ -10,9 +10,9 @@ class HouseData(BaseModel):
     chambres: int
     jardin: int
 
-@app.get("/predict")
-def predict_get():
-    return {"y_pred": 2}
+# @app.get("/predict")
+# def predict_get():
+#     return {"y_pred": 2}
 
 @app.post("/predict")
 def predict_model(data: HouseData):
