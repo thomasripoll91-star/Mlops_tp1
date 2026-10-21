@@ -16,5 +16,13 @@ class HouseData(BaseModel):
 
 @app.post("/predict")
 def predict_model(data: HouseData):
+    # La prédiction renvoie généralement un tableau numpy, on récupère le premier élément
     prediction = model.predict([[data.taille, data.chambres, data.jardin]])
-    return {"y_pred": float(prediction[0])}
+    
+    # On stocke la valeur dans une variable pour éviter d'appeler float() deux fois
+    valeur_predite = float(prediction[0])
+    
+    return {
+        "y_pred": valeur_predite,
+        "commentaire": f"La valeur du bien est estimée à {valeur_predite}"
+    }
